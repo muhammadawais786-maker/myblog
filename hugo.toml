@@ -1,0 +1,5 @@
+baseURL = "https://myblog.pages.dev/"
+languageCode = "ur"
+languageDirection = "rtl"
+title = "میرا بلاگ"
+theme = "ananke"
