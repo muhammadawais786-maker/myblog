@@ -229,3 +229,4 @@ a.chip:hover { background: rgba(46, 204, 143, 0.22); }
   html { scroll-behavior: auto; }
   * { transition: none !important; }
 }
+   .tv, .tv iframe { color-scheme: normal; }
