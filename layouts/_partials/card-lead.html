@@ -1,0 +1,8 @@
+{{ $chip := "Guide" }}{{ $chipURL := "" }}
+{{ with .GetTerms "categories" }}{{ with index . 0 }}{{ $chip = .LinkTitle }}{{ $chipURL = .RelPermalink }}{{ end }}{{ end }}
+<article class="card card-lead">
+  <div class="card-top">{{ if $chipURL }}<a class="chip" href="{{ $chipURL }}">{{ $chip }}</a>{{ else }}<span class="chip">{{ $chip }}</span>{{ end }}</div>
+  <h3 class="card-title"><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h3>
+  <p class="card-sum">{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 220 }}{{ end }}</p>
+  <div class="meta"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time><span>{{ .ReadingTime }} min read</span></div>
+</article>

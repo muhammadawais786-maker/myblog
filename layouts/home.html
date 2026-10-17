@@ -1,0 +1,49 @@
+{{ define "main" }}
+{{ $news := where site.RegularPages "Section" "news" }}
+{{ $learn := where site.RegularPages "Section" "learn" }}
+<section class="wrap hero">
+  <div class="hero-copy">
+    <h1>Crypto news you can read in five minutes.</h1>
+    <p class="hero-lede">{{ site.Params.description }}</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="{{ "news/" | relURL }}">Read the latest</a>
+      <a class="btn" href="{{ "markets/" | relURL }}">Open live markets</a>
+    </div>
+  </div>
+  <div class="pulse">
+    {{ partial "tvmini.html" (dict "symbol" "BITSTAMP:BTCUSD" "title" "Bitcoin") }}
+    {{ partial "tvmini.html" (dict "symbol" "BITSTAMP:ETHUSD" "title" "Ethereum") }}
+    {{ partial "tvmini.html" (dict "symbol" "BINANCE:BNBUSDT" "title" "BNB") }}
+    {{ partial "tvmini.html" (dict "symbol" "COINBASE:SOLUSD" "title" "Solana") }}
+  </div>
+</section>
+
+<div class="wrap">{{ partial "ad.html" (dict "slot" "top") }}</div>
+
+<div class="wrap layout">
+  <div class="stack">
+    <section>
+      <div class="section-head"><h2>Latest news</h2><a href="{{ "news/" | relURL }}">All news</a></div>
+      {{ if $news }}
+        {{ partial "card-lead.html" (index $news 0) }}
+        <div class="grid">{{ range first 8 (after 1 $news) }}{{ partial "card.html" . }}{{ end }}</div>
+      {{ else }}
+        <div class="empty"><h2>The first stories are on their way</h2><p>Check back soon, or start with the guides below.</p></div>
+      {{ end }}
+    </section>
+    {{ with $learn }}
+    <section>
+      <div class="section-head"><h2>New to crypto? Start here</h2><a href="{{ "learn/" | relURL }}">All guides</a></div>
+      <div class="grid">{{ range first 4 .ByWeight }}{{ partial "card.html" . }}{{ end }}</div>
+    </section>
+    {{ end }}
+  </div>
+  <aside class="sidebar">{{ partial "sidebar.html" . }}</aside>
+</div>
+
+<section class="wrap block">
+  <div class="section-head"><h2>The whole market at a glance</h2><a href="{{ "markets/" | relURL }}">Full markets page</a></div>
+  <p class="block-note">Each block is a coin. Bigger means a larger market cap, green means it is up today and red means it is down.</p>
+  {{ partial "tv.html" (dict "name" "heatmap" "height" 560 "label" "Crypto market heatmap") }}
+</section>
+{{ end }}

@@ -1,0 +1,1 @@
+{{ partial "tvmini.html" (dict "symbol" (.Get "symbol" | default "BITSTAMP:BTCUSD") "title" (.Get "title") "range" (.Get "range") "height" (.Get "height" | default 220 | int)) }}

@@ -1,0 +1,23 @@
+<div class="wrap">
+  <header class="list-head">
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
+  </header>
+  {{ partial "ad.html" (dict "slot" "top") }}
+  <div class="layout">
+    <div>
+      {{ $p := .Paginator }}
+      {{ if $p.Pages }}
+      <div class="grid">{{ range $p.Pages }}{{ partial "card.html" . }}{{ end }}</div>
+      {{ partial "pager.html" $p }}
+      {{ else }}
+      <div class="empty">
+        <h2>Nothing published here yet</h2>
+        <p>New stories land every day. Browse the latest news in the meantime.</p>
+        <a class="btn btn-primary" href="{{ "news/" | relURL }}">Go to news</a>
+      </div>
+      {{ end }}
+    </div>
+    <aside class="sidebar">{{ partial "sidebar.html" . }}</aside>
+  </div>
+</div>

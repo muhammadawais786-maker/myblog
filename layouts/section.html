@@ -1,0 +1,31 @@
+{{ define "main" }}
+{{ if eq .Section "markets" }}
+<div class="wrap">
+  <header class="list-head">
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
+  </header>
+  {{ partial "ad.html" (dict "slot" "top") }}
+  <section class="block">
+    <div class="section-head"><h2>Price chart</h2></div>
+    <p class="block-note">Search any coin in the chart to switch markets. Change the timeframe from the toolbar.</p>
+    {{ partial "tvchart.html" (dict "symbol" "BITSTAMP:BTCUSD" "height" 560) }}
+  </section>
+  <section class="block">
+    <div class="section-head"><h2>Market heatmap</h2></div>
+    <p class="block-note">Block size shows market cap. Colour shows the price change today.</p>
+    {{ partial "tv.html" (dict "name" "heatmap" "height" 600 "label" "Crypto market heatmap") }}
+  </section>
+  {{ partial "ad.html" (dict "slot" "incontent") }}
+  <section class="block">
+    <div class="section-head"><h2>Coin screener</h2></div>
+    <p class="block-note">Sort by price, market cap, volume or daily change.</p>
+    {{ partial "tv.html" (dict "name" "screener" "height" 640 "label" "Crypto coin screener") }}
+  </section>
+  {{ with .Content }}<div class="prose block">{{ . }}</div>{{ end }}
+  <p class="block-note fine">Market data comes from TradingView and may be delayed. It is shown for information only and is not financial advice.</p>
+</div>
+{{ else }}
+{{ partial "list-page.html" . }}
+{{ end }}
+{{ end }}

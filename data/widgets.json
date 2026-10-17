@@ -1,0 +1,93 @@
+{
+  "ticker_tape": {
+    "script": "embed-widget-ticker-tape.js",
+    "config": {
+      "symbols": [
+        {"proName": "BITSTAMP:BTCUSD", "title": "Bitcoin"},
+        {"proName": "BITSTAMP:ETHUSD", "title": "Ethereum"},
+        {"proName": "BINANCE:BNBUSDT", "title": "BNB"},
+        {"proName": "BINANCE:XRPUSDT", "title": "XRP"},
+        {"proName": "COINBASE:SOLUSD", "title": "Solana"},
+        {"proName": "BINANCE:DOGEUSDT", "title": "Dogecoin"},
+        {"proName": "COINBASE:ADAUSD", "title": "Cardano"},
+        {"proName": "COINBASE:AVAXUSD", "title": "Avalanche"},
+        {"proName": "COINBASE:LINKUSD", "title": "Chainlink"}
+      ],
+      "showSymbolLogo": true,
+      "isTransparent": true,
+      "displayMode": "adaptive",
+      "colorTheme": "dark",
+      "locale": "en"
+    }
+  },
+  "heatmap": {
+    "script": "embed-widget-crypto-coins-heatmap.js",
+    "config": {
+      "dataSource": "Crypto",
+      "blockSize": "market_cap_calc",
+      "blockColor": "change",
+      "locale": "en",
+      "symbolUrl": "",
+      "colorTheme": "dark",
+      "hasTopBar": false,
+      "isDataSetEnabled": false,
+      "isZoomEnabled": true,
+      "hasSymbolTooltip": true,
+      "isMonoSize": false,
+      "width": "100%",
+      "height": "100%"
+    }
+  },
+  "screener": {
+    "script": "embed-widget-screener.js",
+    "config": {
+      "defaultColumn": "overview",
+      "screener_type": "crypto_mkt",
+      "displayCurrency": "USD",
+      "colorTheme": "dark",
+      "isTransparent": true,
+      "locale": "en",
+      "width": "100%",
+      "height": "100%"
+    }
+  },
+  "market_overview": {
+    "script": "embed-widget-market-overview.js",
+    "config": {
+      "colorTheme": "dark",
+      "dateRange": "12M",
+      "showChart": true,
+      "locale": "en",
+      "width": "100%",
+      "height": "100%",
+      "isTransparent": true,
+      "showSymbolLogo": true,
+      "showFloatingTooltip": false,
+      "plotLineColorGrowing": "rgba(46, 204, 143, 1)",
+      "plotLineColorFalling": "rgba(240, 96, 93, 1)",
+      "gridLineColor": "rgba(234, 242, 238, 0)",
+      "scaleFontColor": "#8FA39A",
+      "belowLineFillColorGrowing": "rgba(46, 204, 143, 0.12)",
+      "belowLineFillColorFalling": "rgba(240, 96, 93, 0.12)",
+      "belowLineFillColorGrowingBottom": "rgba(46, 204, 143, 0)",
+      "belowLineFillColorFallingBottom": "rgba(240, 96, 93, 0)",
+      "symbolActiveColor": "rgba(46, 204, 143, 0.12)",
+      "tabs": [
+        {
+          "title": "Crypto",
+          "symbols": [
+            {"s": "BITSTAMP:BTCUSD", "d": "Bitcoin"},
+            {"s": "BITSTAMP:ETHUSD", "d": "Ethereum"},
+            {"s": "BINANCE:BNBUSDT", "d": "BNB"},
+            {"s": "BINANCE:XRPUSDT", "d": "XRP"},
+            {"s": "COINBASE:SOLUSD", "d": "Solana"},
+            {"s": "BINANCE:DOGEUSDT", "d": "Dogecoin"}
+          ],
+          "originalTitle": "Crypto"
+        }
+      ]
+    }
+  },
+  "mini_chart":     { "script": "embed-widget-mini-symbol-overview.js" },
+  "advanced_chart": { "script": "embed-widget-advanced-chart.js" }
+}

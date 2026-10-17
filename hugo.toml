@@ -1,5 +1,53 @@
-   baseURL = "https://myblog-921.pages.dev/"
-languageCode = "ur"
-languageDirection = "rtl"
-title = "میرا بلاگ"
-theme = "ananke"
+baseURL = "https://myblog-921.pages.dev/"
+title = "CryptoBrief"
+locale = "en-US"
+defaultContentLanguage = "en"
+enableRobotsTXT = true
+summaryLength = 30
+
+[pagination]
+  pagerSize = 12
+
+[taxonomies]
+  category = "categories"
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[outputs]
+  home = ["HTML", "RSS"]
+  section = ["HTML", "RSS"]
+
+[params]
+  tagline = "Daily crypto news and live markets"
+  description = "Daily crypto news, live market data and easy guides to Bitcoin, Ethereum, DeFi and the wider crypto market."
+  author = "CryptoBrief Editorial"
+  # Change this to your real contact email before you apply for ads.
+  email = "contact@yourdomain.com"
+  # Category order used in the menu bar and sidebar.
+  navCategories = ["Bitcoin", "Ethereum", "Altcoins", "DeFi", "Regulation", "Markets"]
+
+  [params.ads]
+    # true  = show a dashed "Ad space" box where an ad slot has no code yet
+    # false = show nothing until you paste real ad code into a slot
+    showPlaceholders = true
+
+[[menus.main]]
+  name = "News"
+  url = "/news/"
+  weight = 10
+
+[[menus.main]]
+  name = "Markets"
+  url = "/markets/"
+  weight = 20
+
+[[menus.main]]
+  name = "Learn"
+  url = "/learn/"
+  weight = 30
+
+[[menus.main]]
+  name = "About"
+  url = "/about/"
+  weight = 40

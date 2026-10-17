@@ -1,0 +1,2 @@
+{{ $cfg := dict "autosize" true "symbol" (.symbol | default "BITSTAMP:BTCUSD") "interval" (.interval | default "D") "timezone" "Etc/UTC" "theme" "dark" "style" "1" "locale" "en" "backgroundColor" "#101412" "gridColor" "rgba(234, 242, 238, 0.06)" "allow_symbol_change" true "hide_side_toolbar" true "save_image" false "support_host" "https://www.tradingview.com" }}
+{{ partial "tv.html" (dict "name" "advanced_chart" "config" $cfg "height" (.height | default 480) "label" (printf "%s price chart" (.symbol | default "Bitcoin"))) }}

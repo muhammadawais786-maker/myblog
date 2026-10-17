@@ -1,0 +1,52 @@
+{{ define "main" }}
+{{ if eq .Section "" }}
+<article class="wrap narrow plain-page">
+  <header class="list-head"><h1>{{ .Title }}</h1>{{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}</header>
+  <div class="prose">{{ .Content }}</div>
+  {{ with .Params.updated }}<p class="block-note fine">Last updated {{ . }}</p>{{ end }}
+</article>
+{{ else }}
+{{ $chip := "Guide" }}{{ $chipURL := "" }}
+{{ with .GetTerms "categories" }}{{ with index . 0 }}{{ $chip = .LinkTitle }}{{ $chipURL = .RelPermalink }}{{ end }}{{ end }}
+<div class="wrap article-layout">
+  <article class="article">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="{{ "/" | relURL }}">Home</a><span aria-hidden="true">/</span><a href="{{ .Parent.RelPermalink }}">{{ .Parent.Title }}</a>
+    </nav>
+    <header class="article-head">
+      <div class="card-top">{{ if $chipURL }}<a class="chip" href="{{ $chipURL }}">{{ $chip }}</a>{{ else }}<span class="chip">{{ $chip }}</span>{{ end }}</div>
+      <h1>{{ .Title }}</h1>
+      {{ with .Description }}<p class="article-lede">{{ . }}</p>{{ end }}
+      <div class="meta">
+        <span>By {{ site.Params.author }}</span>
+        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+        <span>{{ .ReadingTime }} min read</span>
+      </div>
+    </header>
+    {{ partial "ad.html" (dict "slot" "top") }}
+    <div class="prose">{{ .Content }}</div>
+    {{ partial "ad.html" (dict "slot" "incontent") }}
+    {{ if eq .Section "news" }}
+    <p class="notice"><strong>Not financial advice.</strong> This article is for information only. Crypto prices move fast and you can lose money. Do your own research before you buy, sell or hold any asset.</p>
+    {{ end }}
+    <div class="share">
+      <span>Share</span>
+      <a href="https://twitter.com/intent/tweet?url={{ .Permalink | urlquery }}&text={{ .Title | urlquery }}" target="_blank" rel="noopener">X</a>
+      <a href="https://wa.me/?text={{ printf "%s %s" .Title .Permalink | urlquery }}" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="https://t.me/share/url?url={{ .Permalink | urlquery }}&text={{ .Title | urlquery }}" target="_blank" rel="noopener">Telegram</a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u={{ .Permalink | urlquery }}" target="_blank" rel="noopener">Facebook</a>
+      <button type="button" data-copy-link>Copy link</button>
+    </div>
+    {{ $self := .Permalink }}
+    {{ $more := first 3 (where (where site.RegularPages "Section" .Section) "Permalink" "ne" $self) }}
+    {{ with $more }}
+    <section class="related">
+      <div class="section-head"><h2>More from {{ $.Parent.Title }}</h2></div>
+      <div class="grid">{{ range . }}{{ partial "card.html" . }}{{ end }}</div>
+    </section>
+    {{ end }}
+  </article>
+  <aside class="sidebar">{{ partial "sidebar.html" . }}</aside>
+</div>
+{{ end }}
+{{ end }}

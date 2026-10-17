@@ -1,0 +1,6 @@
+{{ $w := index hugo.Data.widgets .name }}
+{{ $cfg := $w.config }}
+{{ with .config }}{{ $cfg = . }}{{ end }}
+<div class="tv {{ .class }}" role="region" aria-label="{{ .label }}" style="--tv-h:{{ .height | default 400 }}px" data-tv-src="https://s3.tradingview.com/external-embedding/{{ $w.script }}" data-tv-config="{{ $cfg | jsonify }}">
+  <div class="tv-skeleton" aria-hidden="true">Loading live data</div>
+</div>

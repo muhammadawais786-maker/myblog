@@ -1,0 +1,15 @@
+{{ $slot := .slot }}
+{{ $sizes := dict "top" "728x90" "sidebar" "300x250" "incontent" "300x250" "bottom" "728x90" }}
+{{ $size := index $sizes $slot | default "300x250" }}
+{{ $wh := split $size "x" }}
+{{ $code := trim (partial (printf "ads/%s.html" $slot) . | string) " \n\r\t" }}
+{{ if or $code site.Params.ads.showPlaceholders }}
+<aside class="ad ad-{{ $slot }}" aria-label="Advertisement">
+  <span class="ad-label">Advertisement</span>
+  <div class="ad-box" style="--ad-w:{{ index $wh 0 }}px;--ad-h:{{ index $wh 1 }}px">
+    {{ if $code }}{{ $code | safeHTML }}{{ else }}
+    <div class="ad-ph"><span>Ad space {{ $size }}</span><small>Slot: {{ $slot }}</small></div>
+    {{ end }}
+  </div>
+</aside>
+{{ end }}

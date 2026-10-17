@@ -1,0 +1,27 @@
+{{ $here := .RelPermalink }}
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="{{ "/" | relURL }}" aria-label="{{ site.Title }} home">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#2ECC8F"/><path d="M7 21l6-6 4 4 8-9" fill="none" stroke="#06130d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="brand-text">Crypto<b>Brief</b></span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Main">
+      {{ range site.Menus.main }}
+      <a href="{{ .URL | relURL }}"{{ if hasPrefix $here .URL }} aria-current="page"{{ end }}>{{ .Name }}</a>
+      {{ end }}
+    </nav>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="Menu"><span></span></button>
+  </div>
+  <div class="catbar">
+    <div class="wrap">
+      <ul>
+        {{ range site.Params.navCategories }}
+        <li><a href="{{ printf "categories/%s/" (. | urlize) | relURL }}">{{ . }}</a></li>
+        {{ end }}
+      </ul>
+    </div>
+  </div>
+</header>
+<div class="ticker">
+  {{ partial "tv.html" (dict "name" "ticker_tape" "height" 46 "class" "tv--bare" "label" "Live crypto prices") }}
+</div>

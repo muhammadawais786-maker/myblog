@@ -1,0 +1,20 @@
+<div class="sidebar-inner">
+  {{ partial "ad.html" (dict "slot" "sidebar") }}
+  <section class="side-card">
+    <h2>Categories</h2>
+    <ul class="cat-list">
+      {{ range site.Params.navCategories }}
+      <li><a href="{{ printf "categories/%s/" (. | urlize) | relURL }}">{{ . }}</a></li>
+      {{ end }}
+    </ul>
+  </section>
+  {{ $learn := where site.RegularPages "Section" "learn" }}
+  {{ with $learn }}
+  <section class="side-card">
+    <h2>Start here</h2>
+    <ul class="plain">
+      {{ range first 5 .ByWeight }}<li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>{{ end }}
+    </ul>
+  </section>
+  {{ end }}
+</div>

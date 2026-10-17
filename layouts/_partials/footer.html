@@ -1,0 +1,42 @@
+<div class="wrap">{{ partial "ad.html" (dict "slot" "bottom") }}</div>
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <a class="brand" href="{{ "/" | relURL }}">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#2ECC8F"/><path d="M7 21l6-6 4 4 8-9" fill="none" stroke="#06130d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="brand-text">Crypto<b>Brief</b></span>
+      </a>
+      <p>{{ site.Params.description }}</p>
+    </div>
+    <div>
+      <h2>Explore</h2>
+      <ul>
+        <li><a href="{{ "news/" | relURL }}">News</a></li>
+        <li><a href="{{ "markets/" | relURL }}">Live markets</a></li>
+        <li><a href="{{ "learn/" | relURL }}">Learn</a></li>
+        <li><a href="{{ "index.xml" | relURL }}">RSS feed</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Categories</h2>
+      <ul>
+        {{ range site.Params.navCategories }}
+        <li><a href="{{ printf "categories/%s/" (. | urlize) | relURL }}">{{ . }}</a></li>
+        {{ end }}
+      </ul>
+    </div>
+    <div>
+      <h2>Company</h2>
+      <ul>
+        <li><a href="{{ "about/" | relURL }}">About</a></li>
+        <li><a href="{{ "contact/" | relURL }}">Contact</a></li>
+        <li><a href="{{ "privacy-policy/" | relURL }}">Privacy policy</a></li>
+        <li><a href="{{ "terms/" | relURL }}">Terms of use</a></li>
+        <li><a href="{{ "disclaimer/" | relURL }}">Disclaimer</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap footer-base">
+    <p>© {{ now.Year }} {{ site.Title }}. Content is for information only and is not financial advice. Market data by TradingView and may be delayed.</p>
+  </div>
+</footer>
