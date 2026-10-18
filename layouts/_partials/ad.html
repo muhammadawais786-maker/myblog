@@ -1,5 +1,5 @@
 {{ $slot := .slot }}
-{{ $sizes := dict "top" "728x90" "sidebar" "300x250" "incontent" "300x250" "bottom" "728x90" }}
+{{ $sizes := dict "top" "728x90" "sidebar" "300x250" "incontent" "300x250" "bottom" "320x50" }}
 {{ $size := index $sizes $slot | default "300x250" }}
 {{ $wh := split $size "x" }}
 {{ $code := trim (partial (printf "ads/%s.html" $slot) . | string) " \n\r\t" }}
