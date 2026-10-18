@@ -230,3 +230,4 @@ a.chip:hover { background: rgba(46, 204, 143, 0.22); }
   * { transition: none !important; }
 }
    .tv, .tv iframe { color-scheme: normal; }
+@media (max-width: 799px) { .ad-top { display: none; } }
