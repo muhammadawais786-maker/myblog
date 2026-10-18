@@ -30,7 +30,7 @@ summaryLength = 30
   [params.ads]
     # true  = show a dashed "Ad space" box where an ad slot has no code yet
     # false = show nothing until you paste real ad code into a slot
-    showPlaceholders = true
+    showPlaceholders = false
 
 [[menus.main]]
   name = "News"
